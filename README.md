@@ -28,10 +28,10 @@ You should edit `/etc/init/phabricator-to-slack.conf` and add the following envi
 
     env PORT=...             # e.g. 8000
     env SLACK_CHANNEL=...    # e.g. #random
-    env SLACK_TOKEN=... # find it in https://api.slack.com/
+    env SLACK_TOKEN=...      # find it in https://api.slack.com/
     env PHABRICATOR_HOST=... # e.g. https://your.phabricator.host
     env PHABRICATOR_USER=... # Phabricator username
-    env PHABRICATOR_CERT=... # find it in /settings/panel/conduit of your Phabricator site
+    env PHABRICATOR_CERT=... # find it in /settings/panel/conduit/ of your Phabricator site
 
 ### Phabricator Setup
 
