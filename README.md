@@ -8,31 +8,37 @@ Phabricator, Slack, and Go are my favorite tools.
 
 ## How
 
-Build the code:
+### Build the code
 
     go get github.com/yinghau76/phabricator-to-slack
 
-Run it directly:
+### Run it directly
 
     PORT=... \
     PHABRICATOR_HOST=... PHABRICATOR_USER=... PHABRICATOR_CERT=... \
     SLACK_TOKEN=... SLACK_CHANNEL= ... \
     phabricator-slack
 
-Or install it:
+### Install as system service
 
     sudo phabricator-to-slack install
     
-For Ubuntu 12.04, edit `/etc/init/phabricator-to-slack.conf` to configure settings
+#### Ubuntu 12.04
+
+Ubuntu 12.04 is the only tested platform.
+
+You should edit `/etc/init/phabricator-to-slack.conf` and add the following environment variables:
         
-    env PORT=...
-    env SLACK_CHANNEL="#team"
-    env SLACK_TOKEN=...
-    env PHABRICATOR_HOST=...
+    env PORT=...             # e.g. 3003 
+    env SLACK_CHANNEL=...    # e.g. #random
+    env SLACK_TOKEN=... 
+    env PHABRICATOR_HOST=... # e.g. https://your.phabricator.host
     env PHABRICATOR_USER=...
     env PHABRICATOR_CERT=...
 
-Finally configure Phabricator to publish notifications in `/config/edit/feed.http-hooks/`.
+### Phabricator Setup
+
+Remember to configure Phabricator (`/config/edit/feed.http-hooks/`) so that notifications can be published to phabricator-to-slack.
 
 ## Thanks
 
