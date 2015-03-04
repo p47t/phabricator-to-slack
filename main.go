@@ -42,6 +42,9 @@ func (p *program) run() {
 	var t = template.Must(template.New("message").Parse(`<{{ .Uri }}|{{ .Name }}> {{ .Text }}`))
 
 	http.HandleFunc("/story", func(w http.ResponseWriter, r *http.Request) {
+		// Reconnect everytime to refresh token
+		phabricator.Connect()
+
 		story := r.FormValue("storyID")
 		text := r.FormValue("storyText")
 		author := r.FormValue("storyAuthorPHID")
