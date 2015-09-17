@@ -11,6 +11,17 @@ import (
 	"time"
 )
 
+type PhObject map[string]string
+
+type ConduitError struct {
+	Code string
+	Info string
+}
+
+func (c ConduitError) Error() string {
+	return fmt.Sprintf("%s %s", c.Code, c.Info)
+}
+
 type Phabricator struct {
 	Host string
 	User string
@@ -18,8 +29,6 @@ type Phabricator struct {
 
 	conduitJson string
 }
-
-type PhObject map[string]string
 
 func (p *Phabricator) Connect() error {
 	// Prepare connect parameters
@@ -43,8 +52,8 @@ func (p *Phabricator) Connect() error {
 	}
 
 	var result struct {
-		ErrorCode interface{} `json:"error_code"`
-		ErrorInfo interface{} `json:"error_info"`
+		ErrorCode string `json:"error_code"`
+		ErrorInfo string `json:"error_info"`
 		Result    struct {
 			ConnectionID float64 `json:"connectionID"`
 			SessionKey   string  `json:"sessionKey"`
@@ -55,8 +64,8 @@ func (p *Phabricator) Connect() error {
 	if err = json.Unmarshal(resultJson, &result); err != nil {
 		return err
 	}
-	if result.ErrorCode != nil {
-		return fmt.Errorf("Connect failed:", result.ErrorCode, result.ErrorInfo)
+	if result.ErrorCode != "" {
+		return ConduitError{Code: result.ErrorCode, Info: result.ErrorInfo}
 	}
 
 	conduitJson, _ := json.Marshal(map[string]interface{}{
@@ -86,16 +95,16 @@ func (p *Phabricator) PhidQuery(phid string) (PhObject, error) {
 	}
 
 	var result struct {
-		ErrorCode interface{}         `json:"error_code"`
-		ErrorInfo interface{}         `json:"error_info"`
+		ErrorCode string              `json:"error_code"`
+		ErrorInfo string              `json:"error_info"`
 		Result    map[string]PhObject `json:"result"`
 	}
 	resultJson, _ := ioutil.ReadAll(resp.Body)
 	if err = json.Unmarshal(resultJson, &result); err != nil {
 		return nil, err
 	}
-	if result.ErrorCode != nil {
-		return nil, fmt.Errorf("Connect failed:", result.ErrorCode, result.ErrorInfo)
+	if result.ErrorCode != "" {
+		return nil, ConduitError{Code: result.ErrorCode, Info: result.ErrorInfo}
 	}
 
 	for _, obj := range result.Result {
