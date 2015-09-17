@@ -61,6 +61,7 @@ func (p *Phabricator) Connect() error {
 		} `json:"result"`
 	}
 	resultJson, _ := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
 	if err = json.Unmarshal(resultJson, &result); err != nil {
 		return err
 	}
@@ -100,6 +101,7 @@ func (p *Phabricator) PhidQuery(phid string) (PhObject, error) {
 		Result    map[string]PhObject `json:"result"`
 	}
 	resultJson, _ := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
 	if err = json.Unmarshal(resultJson, &result); err != nil {
 		return nil, err
 	}
