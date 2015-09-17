@@ -24,7 +24,7 @@ Phabricator-to-Slack works by installing itself as a HTTP hook of Phabricator. A
 
 Ubuntu 12.04 is the only tested platform. However, it should work only any platform that Go supports.
 
-You should edit `/etc/init/phabricator-to-slack.conf` and add the following environment variables:
+If you are using upstart, you should edit `/etc/init/phabricator-to-slack.conf` and add the following environment variables:
 
     env PORT=...             # e.g. 8000
     env SLACK_CHANNEL=...    # e.g. #random
