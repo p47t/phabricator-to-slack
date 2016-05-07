@@ -1,6 +1,7 @@
 # Phabricator-to-Slack
 
 [![Build Status](https://travis-ci.org/yinghau76/phabricator-to-slack.svg?branch=master)](https://travis-ci.org/yinghau76/phabricator-to-slack)
+[![GoDoc](https://godoc.org/github.com/yinghau76/phabricator-to-slack?status.svg)](https://godoc.org/github.com/yinghau76/phabricator-to-slack)
 
 ## What?
 
