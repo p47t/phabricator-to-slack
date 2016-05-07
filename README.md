@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/yinghau76/phabricator-to-slack.svg?branch=master)](https://travis-ci.org/yinghau76/phabricator-to-slack)
 [![GoDoc](https://godoc.org/github.com/yinghau76/phabricator-to-slack?status.svg)](https://godoc.org/github.com/yinghau76/phabricator-to-slack)
+[![Coverage Status](https://coveralls.io/repos/github/yinghau76/phabricator-to-slack/badge.svg?branch=master)](https://coveralls.io/github/yinghau76/phabricator-to-slack?branch=master)
 
 ## What?
 
