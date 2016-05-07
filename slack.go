@@ -1,15 +1,15 @@
 package ph2slack
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"net/http"
 	"net/url"
-	"io/ioutil"
-	"encoding/json"
 )
 
 // SlackResult represents result returned from Slack API
 type SlackResult struct {
-	OK bool `json:"ok"`
+	OK       bool   `json:"ok"`
 	ErrorStr string `json:"error"`
 }
 
@@ -31,7 +31,7 @@ func (s *Slack) PostMessage(channel string, text string) error {
 		"channel":  {channel},
 		"text":     {text},
 	})
-	
+
 	var result SlackResult
 	resultJSON, err := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
@@ -40,7 +40,6 @@ func (s *Slack) PostMessage(channel string, text string) error {
 	}
 	if !result.OK {
 		return result
-	} 
+	}
 	return nil
 }
-
