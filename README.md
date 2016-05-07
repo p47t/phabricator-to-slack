@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/yinghau76/phabricator-to-slack.svg?branch=master)](https://travis-ci.org/yinghau76/phabricator-to-slack)
 [![GoDoc](https://godoc.org/github.com/yinghau76/phabricator-to-slack?status.svg)](https://godoc.org/github.com/yinghau76/phabricator-to-slack)
 [![Coverage Status](https://coveralls.io/repos/github/yinghau76/phabricator-to-slack/badge.svg?branch=master)](https://coveralls.io/github/yinghau76/phabricator-to-slack?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/yinghau76/phabricator-to-slack)](https://goreportcard.com/report/github.com/yinghau76/phabricator-to-slack)
 
 ## What?
 
