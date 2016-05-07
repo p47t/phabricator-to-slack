@@ -1,7 +1,7 @@
 language: go
 
 install:
-    - github.com/stretchr/testify/assert
+    - go get github.com/stretchr/testify/assert
     - go get golang.org/x/tools/cmd/cover
     - go get github.com/mattn/goveralls
   
