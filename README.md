@@ -4,6 +4,7 @@
 [![GoDoc](https://godoc.org/github.com/yinghau76/phabricator-to-slack?status.svg)](https://godoc.org/github.com/yinghau76/phabricator-to-slack)
 [![Coverage Status](https://coveralls.io/repos/github/yinghau76/phabricator-to-slack/badge.svg?branch=master)](https://coveralls.io/github/yinghau76/phabricator-to-slack?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/yinghau76/phabricator-to-slack)](https://goreportcard.com/report/github.com/yinghau76/phabricator-to-slack)
+[![codebeat badge](https://codebeat.co/badges/9e65f307-a91b-4016-9da1-c1bfe62cffb5)](https://codebeat.co/projects/github-com-yinghau76-phabricator-to-slack)
 
 ## What?
 
