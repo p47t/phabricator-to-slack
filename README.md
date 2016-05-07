@@ -1,5 +1,7 @@
 # Phabricator-to-Slack
 
+[![Build Status](https://travis-ci.org/yinghau76/phabricator-to-slack.svg?branch=master)](https://travis-ci.org/yinghau76/phabricator-to-slack)
+
 ## What?
 
 The code demostrates sending Phabricator notifications to Slack. It is implemented with Go majorly for advatange of single-binary deployment.
