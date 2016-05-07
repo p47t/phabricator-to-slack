@@ -9,6 +9,7 @@ import (
 	"text/template"
 
 	"github.com/kardianos/service"
+	"github.com/yinghau76/phabricator-to-slack"
 )
 
 var logger service.Logger
@@ -21,13 +22,13 @@ func (p *program) Start(s service.Service) error {
 }
 
 func (p *program) run() {
-	var phabricator = Phabricator{
+	var phabricator = ph2slack.Phabricator{
 		Host: os.Getenv("PHABRICATOR_HOST"),
 		User: os.Getenv("PHABRICATOR_USER"),
 		Cert: os.Getenv("PHABRICATOR_CERT"),
 	}
 
-	var slack = Slack{
+	var slack = ph2slack.Slack{
 		Token:    os.Getenv("SLACK_TOKEN"),
 		Username: "Phabricator",
 	}
@@ -54,10 +55,10 @@ func (p *program) run() {
 		if phobj, err := phabricator.PhidQuery(phid); phobj != nil {
 			var msg bytes.Buffer
 			t.Execute(&msg, struct{ Uri, Name, Text string }{phobj["uri"], phobj["name"], text})
-			slack.postMessage(channel, msg.String())
+			slack.PostMessage(channel, msg.String())
 		} else {
 			logger.Error("Error:", err.Error())
-			slack.postMessage(channel, text)
+			slack.PostMessage(channel, text)
 		}
 	})
 

@@ -1,4 +1,4 @@
-package main
+package ph2slack
 
 import (
 	"crypto/sha1"

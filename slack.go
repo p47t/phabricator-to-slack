@@ -1,4 +1,4 @@
-package main
+package ph2slack
 
 import (
 	"net/http"
@@ -11,7 +11,8 @@ type Slack struct {
 	Username string
 }
 
-func (s *Slack) postMessage(channel string, text string) {
+// PostMessage posts a message to specified channel
+func (s *Slack) PostMessage(channel string, text string) {
 	http.PostForm("https://slack.com/api/chat.postMessage", url.Values{
 		"token":    {s.Token},
 		"username": {s.Username},
