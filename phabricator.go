@@ -11,8 +11,10 @@ import (
 	"time"
 )
 
+// PhObject represents attributes of a Phabricator object
 type PhObject map[string]string
 
+// ConduitError represents an error happened when communicating with Phabricator
 type ConduitError struct {
 	Code string
 	Info string
@@ -22,18 +24,20 @@ func (c ConduitError) Error() string {
 	return fmt.Sprintf("%s %s", c.Code, c.Info)
 }
 
+// Phabricator provides API access to a Phabricator site specified by Host, User, and Cert.
 type Phabricator struct {
 	Host string
 	User string
 	Cert string
 
-	conduitJson string
+	conduitJSON string // conduit is necessary for subsequent API calls
 }
 
+// Connect connects to specified Phabricator site
 func (p *Phabricator) Connect() error {
 	// Prepare connect parameters
 	token, signature := p.genAuthTokenAndSignature()
-	paramsJson, _ := json.Marshal(map[string]interface{}{
+	paramsJSON, _ := json.Marshal(map[string]interface{}{
 		"client":        "Bot",
 		"clientVersion": 0,
 		"user":          p.User,
@@ -43,7 +47,7 @@ func (p *Phabricator) Connect() error {
 	})
 
 	resp, err := http.PostForm(p.Host+"/api/conduit.connect", url.Values{
-		"params":      {string(paramsJson)},
+		"params":      {string(paramsJSON)},
 		"output":      {"json"},
 		"__conduit__": {"true"},
 	})
@@ -60,22 +64,22 @@ func (p *Phabricator) Connect() error {
 			UserPHID     string  `json:"userPHID"`
 		} `json:"result"`
 	}
-	resultJson, _ := ioutil.ReadAll(resp.Body)
+	resultJSON, _ := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
-	if err = json.Unmarshal(resultJson, &result); err != nil {
+	if err = json.Unmarshal(resultJSON, &result); err != nil {
 		return err
 	}
 	if result.ErrorCode != "" {
 		return ConduitError{Code: result.ErrorCode, Info: result.ErrorInfo}
 	}
 
-	conduitJson, _ := json.Marshal(map[string]interface{}{
+	conduitJSON, _ := json.Marshal(map[string]interface{}{
 		"sessionKey":   result.Result.SessionKey,
 		"connectionID": result.Result.ConnectionID,
 	})
 
 	// Keep the conduit for later API calls
-	p.conduitJson = string(conduitJson)
+	p.conduitJSON = string(conduitJSON)
 	return nil
 }
 
@@ -85,10 +89,11 @@ func (p *Phabricator) genAuthTokenAndSignature() (int64, string) {
 	return token, hex.EncodeToString(sum[:])
 }
 
+// PhidQuery queries attributes of a Phabricator object by its ID
 func (p *Phabricator) PhidQuery(phid string) (PhObject, error) {
 	resp, err := http.PostForm(p.Host+"/api/phid.query", url.Values{
 		"params[phids]":       {fmt.Sprintf(`["%s"]`, phid)},
-		"params[__conduit__]": {p.conduitJson},
+		"params[__conduit__]": {p.conduitJSON},
 		"output":              {"json"},
 	})
 	if err != nil {
@@ -100,9 +105,9 @@ func (p *Phabricator) PhidQuery(phid string) (PhObject, error) {
 		ErrorInfo string              `json:"error_info"`
 		Result    map[string]PhObject `json:"result"`
 	}
-	resultJson, _ := ioutil.ReadAll(resp.Body)
+	resultJSON, _ := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
-	if err = json.Unmarshal(resultJson, &result); err != nil {
+	if err = json.Unmarshal(resultJSON, &result); err != nil {
 		return nil, err
 	}
 	if result.ErrorCode != "" {
@@ -112,5 +117,5 @@ func (p *Phabricator) PhidQuery(phid string) (PhObject, error) {
 	for _, obj := range result.Result {
 		return obj, nil // expect only one
 	}
-	return nil, fmt.Errorf("Empty result from %s", resultJson)
+	return nil, fmt.Errorf("Empty result from %s", resultJSON)
 }

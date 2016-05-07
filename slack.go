@@ -5,6 +5,7 @@ import (
 	"net/url"
 )
 
+// Slack provides API access to a Slack site.
 type Slack struct {
 	Token    string
 	Username string
