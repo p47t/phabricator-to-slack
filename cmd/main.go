@@ -40,10 +40,10 @@ func (p *program) run() {
 
 	channel := os.Getenv("SLACK_CHANNEL")
 
-	var t = template.Must(template.New("message").Parse(`<{{ .Uri }}|{{ .Name }}> {{ .Text }}`))
+	var t = template.Must(template.New("message").Parse(`<{{ .URI }}|{{ .Name }}> {{ .Text }}`))
 
 	http.HandleFunc("/story", func(w http.ResponseWriter, r *http.Request) {
-		// Reconnect everytime to refresh token
+		// Reconnect every time to refresh token
 		phabricator.Connect()
 
 		story := r.FormValue("storyID")
@@ -54,7 +54,7 @@ func (p *program) run() {
 
 		if phobj, err := phabricator.PhidQuery(phid); phobj != nil {
 			var msg bytes.Buffer
-			t.Execute(&msg, struct{ Uri, Name, Text string }{phobj["uri"], phobj["name"], text})
+			t.Execute(&msg, struct{ URI, Name, Text string }{phobj["uri"], phobj["name"], text})
 			slack.PostMessage(channel, msg.String())
 		} else {
 			logger.Error("Error:", err.Error())
