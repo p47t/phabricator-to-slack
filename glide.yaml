@@ -1,6 +1,0 @@
-package: github.com/yinghau76/phabricator-to-slack
-import:
-- package: github.com/kardianos/service
-- package: github.com/stretchr/testify
-  subpackages:
-  - assert

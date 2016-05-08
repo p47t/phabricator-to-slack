@@ -1,12 +1,12 @@
 language: go
 
 install:
-    - go get github.com/Masterminds/glide
+    - go get github.com/tools/godep
     - go get golang.org/x/tools/cmd/cover
     - go get github.com/mattn/goveralls
 
 script:
-    - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/glide install
+    - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/godep restore
     - go test -v -cover -covermode=count -coverprofile=coverage.out .
     - go test -v ./cmd
     - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$COVERALLS_TOKEN
