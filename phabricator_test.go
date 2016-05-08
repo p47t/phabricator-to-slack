@@ -34,7 +34,7 @@ func TestPhabricatorInvalidHost(t *testing.T) {
 	assert.Error(t, err)
 }
 
-func TestPhabricatorConnect(t *testing.T) {
+func TestPhabricatorQuery(t *testing.T) {
 	ph := &Phabricator{
 		Host:  os.Getenv("PHABRICATOR_TEST_HOST"),
 		Token: os.Getenv("PHABRICATOR_TEST_TOKEN"),

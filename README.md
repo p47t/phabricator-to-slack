@@ -32,12 +32,11 @@ Ubuntu 12.04 is the only tested platform. However, it should work only any platf
 
 If you are using upstart, you should edit `/etc/init/phabricator-to-slack.conf` and add the following environment variables:
 
-    env PORT=...             # e.g. 8000
-    env SLACK_CHANNEL=...    # e.g. #random
-    env SLACK_TOKEN=...      # find it in https://api.slack.com/
-    env PHABRICATOR_HOST=... # e.g. https://your.phabricator.host
-    env PHABRICATOR_USER=... # Phabricator username
-    env PHABRICATOR_CERT=... # find it in /settings/panel/conduit/ of your Phabricator site
+    env PORT=...              # e.g. 8000
+    env SLACK_CHANNEL=...     # e.g. #random
+    env SLACK_TOKEN=...       # find it in https://api.slack.com/
+    env PHABRICATOR_HOST=...  # e.g. https://your.phabricator.host
+    env PHABRICATOR_TOKEN=... # find it in /settings/panel/apitokens/ of your Phabricator site
 
 ### Phabricator Setup
 

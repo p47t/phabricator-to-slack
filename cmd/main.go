@@ -14,18 +14,17 @@ import (
 
 var logger service.Logger
 
-type program struct{}
+type server struct{}
 
-func (p *program) Start(s service.Service) error {
-	go p.run()
+func (s *server) Start(service service.Service) error {
+	go s.run()
 	return nil
 }
 
-func (p *program) run() {
+func (s *server) run() {
 	var phabricator = ph2slack.Phabricator{
-		Host: os.Getenv("PHABRICATOR_HOST"),
-		User: os.Getenv("PHABRICATOR_USER"),
-		Cert: os.Getenv("PHABRICATOR_CERT"),
+		Host:  os.Getenv("PHABRICATOR_HOST"),
+		Token: os.Getenv("PHABRICATOR_TOKEN"),
 	}
 
 	var slack = ph2slack.Slack{
@@ -33,19 +32,11 @@ func (p *program) run() {
 		Username: "Phabricator",
 	}
 
-	if err := phabricator.Connect(); err != nil {
-		logger.Error("Failed to connect Phabricator: ", err.Error())
-		return
-	}
-
 	channel := os.Getenv("SLACK_CHANNEL")
 
 	var t = template.Must(template.New("message").Parse(`<{{ .URI }}|{{ .Name }}> {{ .Text }}`))
 
 	http.HandleFunc("/story", func(w http.ResponseWriter, r *http.Request) {
-		// Reconnect every time to refresh token
-		phabricator.Connect()
-
 		story := r.FormValue("storyID")
 		text := r.FormValue("storyText")
 		author := r.FormValue("storyAuthorPHID")
@@ -65,7 +56,7 @@ func (p *program) run() {
 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 }
 
-func (p *program) Stop(s service.Service) error {
+func (s *server) Stop(service service.Service) error {
 	return nil
 }
 
@@ -76,8 +67,8 @@ func main() {
 		Description: "Passing Phabricator notifications to Slack",
 	}
 
-	prg := &program{}
-	s, err := service.New(prg, svcConfig)
+	srv := &server{}
+	s, err := service.New(srv, svcConfig)
 	if err != nil {
 		log.Fatal(err)
 	}
