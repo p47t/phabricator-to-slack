@@ -62,7 +62,7 @@ func (s *server) Stop(service service.Service) error {
 
 func main() {
 	svcConfig := &service.Config{
-		Name:        "phabricator-to-slack",
+		Name:        "ph2slack",
 		DisplayName: "phabricator-to-slack",
 		Description: "Passing Phabricator notifications to Slack",
 	}
