@@ -1,0 +1,20 @@
+hash: 1de3aaffc3cc565eece8d67b61ad4684018db394feda0bda657d0d67a35746c7
+updated: 2016-05-07T19:20:15.232319505-07:00
+imports:
+- name: github.com/kardianos/osext
+  version: 29ae4ffbc9a6fe9fb2bc5029050ce6996ea1d3bc
+- name: github.com/kardianos/service
+  version: d97d87340b4a0d418f4d266ca7b00ba1d31e0d5a
+- name: github.com/stretchr/testify
+  version: 6cb3b85ef5a0efef77caef88363ec4d4b5c0976d
+  subpackages:
+  - assert
+- name: golang.org/x/sys
+  version: b776ec39b3e54652e09028aaaaac9757f4f8211a
+  subpackages:
+  - windows/registry
+  - windows/svc
+  - windows/svc/eventlog
+  - windows/svc/mgr
+  - windows
+devImports: []
