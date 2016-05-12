@@ -58,3 +58,16 @@ func TestPhabricatorQueryError(t *testing.T) {
 	_, err := ph.PhidQuery("token")
 	assert.EqualError(t, err, "500 something wrong")
 }
+
+func TestPhabricatorQueryEmptyResult(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, `{"result":{}}`)
+	}))
+	defer ts.Close()
+
+	ph := &Phabricator{
+		Host: ts.URL,
+	}
+	_, err := ph.PhidQuery("token")
+	assert.EqualError(t, err, "Empty result")
+}
