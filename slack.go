@@ -19,13 +19,21 @@ func (r SlackResult) Error() string {
 
 // Slack provides API access to a Slack site.
 type Slack struct {
+	APIHost  string
 	Token    string
 	Username string
 }
 
+func (s *Slack) getAPIHost() string {
+	if s.APIHost != "" {
+		return s.APIHost
+	}
+	return "https://slack.com/api/"
+}
+
 // PostMessage posts a message to specified channel
 func (s *Slack) PostMessage(channel string, text string) error {
-	resp, err := http.PostForm("https://slack.com/api/chat.postMessage", url.Values{
+	resp, err := http.PostForm(s.getAPIHost()+"chat.postMessage", url.Values{
 		"token":    {s.Token},
 		"username": {s.Username},
 		"channel":  {channel},

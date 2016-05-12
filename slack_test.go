@@ -1,6 +1,9 @@
 package ph2slack
 
 import (
+	"fmt"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"testing"
 
@@ -32,4 +35,19 @@ func TestPostMessage(t *testing.T) {
 	}
 	err := s.PostMessage("test", "ph2slack testing")
 	assert.NoError(t, err)
+}
+
+func TestPostMessageError(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, `invalid JSON`)
+	}))
+	defer ts.Close()
+
+	s := &Slack{
+		APIHost:  ts.URL,
+		Token:    os.Getenv("SLACK_TEST_TOKEN"),
+		Username: "bot",
+	}
+	err := s.PostMessage("test", "ph2slack testing")
+	assert.Error(t, err)
 }
