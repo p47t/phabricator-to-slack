@@ -1,6 +1,9 @@
 package ph2slack
 
 import (
+	"fmt"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"testing"
 
@@ -41,4 +44,17 @@ func TestPhabricatorQuery(t *testing.T) {
 	}
 	_, err := ph.PhidQuery(os.Getenv("PHABRICATOR_TEST_PHID"))
 	assert.NoError(t, err)
+}
+
+func TestPhabricatorQueryError(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, `{"error_code": "500", "error_info": "something wrong"}`)
+	}))
+	defer ts.Close()
+
+	ph := &Phabricator{
+		Host: ts.URL,
+	}
+	_, err := ph.PhidQuery("token")
+	assert.EqualError(t, err, "500 something wrong")
 }
