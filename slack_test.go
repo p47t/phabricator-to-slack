@@ -37,9 +37,25 @@ func TestPostMessage(t *testing.T) {
 	assert.NoError(t, err)
 }
 
-func TestPostMessageError(t *testing.T) {
+func TestPostMessageContentError(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, `invalid JSON`)
+		w.WriteHeader(http.StatusOK)
+	}))
+	defer ts.Close()
+
+	s := &Slack{
+		APIHost:  ts.URL,
+		Token:    os.Getenv("SLACK_TEST_TOKEN"),
+		Username: "bot",
+	}
+	err := s.PostMessage("test", "ph2slack testing")
+	assert.Error(t, err)
+}
+
+func TestPostMessageStatusError(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusBadRequest)
 	}))
 	defer ts.Close()
 

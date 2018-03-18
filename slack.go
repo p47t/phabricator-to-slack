@@ -39,7 +39,9 @@ func (s *Slack) PostMessage(channel string, text string) error {
 		"channel":  {channel},
 		"text":     {text},
 	})
-
+	if err != nil {
+		return err
+	}
 	var result SlackResult
 	resultJSON, err := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
