@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/yinghau76/phabricator-to-slack",
+	"ImportPath": "github.com/p47r1ck7541/phabricator-to-slack",
 	"GoVersion": "go1.6",
 	"GodepVersion": "v63",
 	"Packages": [

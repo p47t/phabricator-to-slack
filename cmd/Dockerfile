@@ -1,6 +1,6 @@
 # Why FROM scratch? Check https://medium.com/@kelseyhightower/optimizing-docker-images-for-static-binaries-b5696e26eb07#.6bm47xu3m
 FROM scratch
-MAINTAINER Patrick Tsai <yinghau76@gmail.com>
+MAINTAINER Patrick Tsai <patrick@simplypatrick.com>
 
 ADD ph2slack ph2slack
 

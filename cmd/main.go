@@ -9,7 +9,7 @@ import (
 	"text/template"
 
 	"github.com/kardianos/service"
-	"github.com/yinghau76/phabricator-to-slack"
+	"github.com/p47r1ck7541/phabricator-to-slack"
 )
 
 var logger service.Logger
