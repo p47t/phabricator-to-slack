@@ -1,10 +1,10 @@
 # Phabricator-to-Slack
 
-[![Build Status](https://travis-ci.org/p47r1ck7541/phabricator-to-slack.svg?branch=master)](https://travis-ci.org/p47r1ck7541/phabricator-to-slack)
-[![GoDoc](https://godoc.org/github.com/p47r1ck7541/phabricator-to-slack?status.svg)](https://godoc.org/github.com/p47r1ck7541/phabricator-to-slack)
-[![Coverage Status](https://coveralls.io/repos/github/p47r1ck7541/phabricator-to-slack/badge.svg?branch=master)](https://coveralls.io/github/p47r1ck7541/phabricator-to-slack?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/p47r1ck7541/phabricator-to-slack)](https://goreportcard.com/report/github.com/p47r1ck7541/phabricator-to-slack)
-[![codebeat badge](https://codebeat.co/badges/9e65f307-a91b-4016-9da1-c1bfe62cffb5)](https://codebeat.co/projects/github-com-p47r1ck7541-phabricator-to-slack)
+[![Build Status](https://travis-ci.org/p47t/phabricator-to-slack.svg?branch=master)](https://travis-ci.org/p47t/phabricator-to-slack)
+[![GoDoc](https://godoc.org/github.com/p47t/phabricator-to-slack?status.svg)](https://godoc.org/github.com/p47t/phabricator-to-slack)
+[![Coverage Status](https://coveralls.io/repos/github/p47t/phabricator-to-slack/badge.svg?branch=master)](https://coveralls.io/github/p47t/phabricator-to-slack?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/p47t/phabricator-to-slack)](https://goreportcard.com/report/github.com/p47t/phabricator-to-slack)
+[![codebeat badge](https://codebeat.co/badges/9e65f307-a91b-4016-9da1-c1bfe62cffb5)](https://codebeat.co/projects/github-com-p47t-phabricator-to-slack)
 
 ## What?
 
@@ -20,7 +20,7 @@ Phabricator-to-Slack works by installing itself as a HTTP hook of Phabricator. A
 
 ### Build the code
 
-    go get github.com/p47r1ck7541/phabricator-to-slack
+    go get github.com/p47t/phabricator-to-slack
 
 ### Install as system service
 
