@@ -1,0 +1,16 @@
+github.com/google/pprof v0.0.0-20181026152656-fde099a545de h1:FNVzWlo4xE8V0835Fzciova4asrBAb86Kxdyw+eXlWk=
+github.com/google/pprof v0.0.0-20181026152656-fde099a545de/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
+github.com/ianlancetaylor/demangle v0.0.0-20180714043527-fcd258a6f0b4 h1:eWmTY5/yaZWgZR+HjyGOCXgM++IEwo/KgxxtYhai4LU=
+github.com/ianlancetaylor/demangle v0.0.0-20180714043527-fcd258a6f0b4/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
+github.com/kardianos/osext v0.0.0-20151222153229-29ae4ffbc9a6 h1:yZAE+xNuc/2gmWV+s5UAb43LYLZQiqyngl6IUCQGJg0=
+github.com/kardianos/osext v0.0.0-20151222153229-29ae4ffbc9a6/go.mod h1:1NbS8ALrpOvjt0rHPNLyCIeMtbizbir8U//inJ+zuB8=
+github.com/kardianos/service v0.0.0-20160301172323-d97d87340b4a h1:2BKaGnfCPJIHD+p/b9bYyoKDmzQsOf3XrPLCtYDH+3I=
+github.com/kardianos/service v0.0.0-20160301172323-d97d87340b4a/go.mod h1:10UU/bEkzh2iEN6aYzbevY7J6p03KO5siTxQWXMEerg=
+github.com/stretchr/testify v0.0.0-20140817192206-653e88ba5548 h1:TL5WhbxhvJYRVVP+LV/mOzV0j/nz6FE5pSlPpu/GM0Y=
+github.com/stretchr/testify v0.0.0-20140817192206-653e88ba5548/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
+golang.org/x/arch v0.0.0-20180920145803-b19384d3c130 h1:Vsc61gop4hfHdzQNolo6Fi/sw7TnJ2yl3ZR4i7bYirs=
+golang.org/x/arch v0.0.0-20180920145803-b19384d3c130/go.mod h1:cYlCBUl1MsqxdiKgmc4uh7TxZfWSFLOGSRR090WDxt8=
+golang.org/x/crypto v0.0.0-20181025213731-e84da0312774 h1:a4tQYYYuK9QdeO/+kEvNYyuR21S+7ve5EANok6hABhI=
+golang.org/x/crypto v0.0.0-20181025213731-e84da0312774/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+golang.org/x/sys v0.0.0-20160429193239-b776ec39b3e5 h1:L+w9B2AS0iNfWhpTtG2zRCYDSSdWo4VJZGbSgvMIxo0=
+golang.org/x/sys v0.0.0-20160429193239-b776ec39b3e5/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
